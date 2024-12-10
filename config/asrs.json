@@ -1,0 +1,55 @@
+{
+    "title": "Adult Self-Report Scale (ASRS) for ADHD",
+    "description": "This test is a screening measure for ADHD. It is not a substitute for a professional diagnosis.",
+    "questions": [
+      {
+        "text": "1. How often do you have trouble wrapping up the final details of a project once the challenging parts have been done?",
+        "options": [
+          { "label": "Never", "value": 0 },
+          { "label": "Rarely", "value": 1 },
+          { "label": "Sometimes", "value": 2 },
+          { "label": "Often", "value": 3 },
+          { "label": "Very Often", "value": 4 }
+        ]
+      },
+      {
+        "text": "2. How often do you have difficulty getting things in order when you have to do a task that requires organization?",
+        "options": [
+          { "label": "Never", "value": 0 },
+          { "label": "Rarely", "value": 1 },
+          { "label": "Sometimes", "value": 2 },
+          { "label": "Often", "value": 3 },
+          { "label": "Very Often", "value": 4 }
+        ]
+      }
+    ],
+    "scoringBands": [
+      {
+        "min": 0,
+        "max": 9,
+        "label": "Low likelihood",
+        "message": "Your score suggests fewer symptoms commonly associated with ADHD.",
+        "resources": [
+          { "text": "General Mental Health Resource", "url": "https://www.example.com/low" }
+        ]
+      },
+      {
+        "min": 10,
+        "max": 19,
+        "label": "Moderate likelihood",
+        "message": "Your score suggests some symptoms that may be associated with ADHD.",
+        "resources": [
+          { "text": "ADHD Support Forum", "url": "https://www.example.com/moderate" }
+        ]
+      },
+      {
+        "min": 20,
+        "max": 40,
+        "label": "High likelihood",
+        "message": "Your score suggests a strong indication of ADHD symptoms. Consider seeking professional help.",
+        "resources": [
+          { "text": "Find a Specialist", "url": "https://www.example.com/high" }
+        ]
+      }
+    ]
+  }
