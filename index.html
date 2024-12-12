@@ -1,8 +1,7 @@
 <head>
     <title>My First Page</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <!--<script src="main.js"></script>-->
-    <!--<script src="renderForm.js"></script>-->
+    <link rel="stylesheet" href="styles/slider-styles.css">
 </head>
 <body>
     <div class="container">
@@ -10,6 +9,29 @@
           <!-- Form will be dynamically injected here -->
         </div>
       </div>
-    
       <script src="scripts/main.js"></script>
+      <script src="scripts/slider-label.js"></script>
+      <script>
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM fully loaded.");
+
+  // Create a MutationObserver to watch for the addition of .slider-container
+  const observer = new MutationObserver((mutationsList, observer) => {
+    const container = document.querySelector('.slider-container');
+    if (container) {
+      console.log("Slider container detected.");
+
+      // Stop observing once the slider container is found
+      observer.disconnect();
+
+      // Get options from dynamically created content
+      const options = ["Never", "Rarely", "Sometimes", "Often", "Very Often"];
+      initSliderLabel('.slider-container', options, true);
+    }
+  });
+
+  // Start observing changes to the DOM
+  observer.observe(document.body, { childList: true, subtree: true });
+});s
+      </script>
 </body>

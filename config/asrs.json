@@ -3,53 +3,229 @@
     "description": "This test is a screening measure for ADHD. It is not a substitute for a professional diagnosis.",
     "questions": [
       {
-        "text": "1. How often do you have trouble wrapping up the final details of a project once the challenging parts have been done?",
+        "part": "A",
+        "text": "How often do you have trouble wrapping up the final details of a project once the challenging parts have been done?",
         "options": [
-          { "label": "Never", "value": 0 },
-          { "label": "Rarely", "value": 1 },
-          { "label": "Sometimes", "value": 2 },
-          { "label": "Often", "value": 3 },
-          { "label": "Very Often", "value": 4 }
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
         ]
       },
       {
-        "text": "2. How often do you have difficulty getting things in order when you have to do a task that requires organization?",
+        "part": "A",
+        "text": "How often do you have difficulty getting things in order when you have to do a task that requires organization?",
         "options": [
-          { "label": "Never", "value": 0 },
-          { "label": "Rarely", "value": 1 },
-          { "label": "Sometimes", "value": 2 },
-          { "label": "Often", "value": 3 },
-          { "label": "Very Often", "value": 4 }
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "How often do you have problems remembering appointments or obligations?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "How often do you feel overly active and compelled to do things, like you were driven by a motor?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you make careless mistakes when you have to work on a boring or difficult project?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you have difficulty keeping your attention when you are doing boring or repetitive work?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you misplace or have difficulty finding things at home or at work?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often are you distracted by activity or noise around you?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you feel restless or fidgety?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you have difficulty unwinding and relaxing when you have time to yourself?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you find yourself talking too much when you are in social situations?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "When you're in a conversation, how often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you have difficulty waiting your turn in situations when turn taking is required?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 0 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "How often do you interrupt others when they are busy?",
+        "options": [
+            { "label": "Never", "value": 0 },
+            { "label": "Rarely", "value": 0 },
+            { "label": "Sometimes", "value": 1 },
+            { "label": "Often", "value": 1 },
+            { "label": "Very Often", "value": 1 }
         ]
       }
     ],
-    "scoringBands": [
-      {
-        "min": 0,
-        "max": 9,
-        "label": "Low likelihood",
-        "message": "Your score suggests fewer symptoms commonly associated with ADHD.",
-        "resources": [
-          { "text": "General Mental Health Resource", "url": "https://www.example.com/low" }
-        ]
-      },
-      {
-        "min": 10,
-        "max": 19,
-        "label": "Moderate likelihood",
-        "message": "Your score suggests some symptoms that may be associated with ADHD.",
-        "resources": [
-          { "text": "ADHD Support Forum", "url": "https://www.example.com/moderate" }
-        ]
-      },
-      {
-        "min": 20,
-        "max": 40,
-        "label": "High likelihood",
-        "message": "Your score suggests a strong indication of ADHD symptoms. Consider seeking professional help.",
-        "resources": [
-          { "text": "Find a Specialist", "url": "https://www.example.com/high" }
-        ]
+    "partsInfo": {
+        "A": {
+          "title": "Part A Score",
+          "maxScore": 6,
+          "interpretation": {
+            "threshold": 4,
+            "positiveMessage": "You have a high number of responses consistent with ADHD symptoms.",
+            "negativeMessage": "You did not meet the threshold for ADHD indicators in Part A.",
+            "positiveResources": [
+              { "text": "What's next?", "url": "https://www.example.com/adhd-treatment" }
+            ],
+            "negativeResources": [
+              { "text": "What's next?", "url": "https://www.example.com/general-resources" }
+            ]
+          }
+        },
+        "B": {
+          "title": "Part B Score",
+          "maxScore": 12,
+          "interpretation": {
+            "note": "Part B doesn’t have a diagnostic threshold. It’s for additional insight.",
+            "resources": [
+              { "text": "What's next?", "url": "https://www.example.com/additional-insight" }
+            ]
+          }
+        }
       }
-    ]
-  }
+    }

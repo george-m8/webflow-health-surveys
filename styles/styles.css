@@ -25,3 +25,29 @@ body {
     border: 1px solid #ccc;
     background: #f9f9f9;
   }
+
+  .slider-container input{
+    width: 100%;
+  }
+
+  #survey-container p{
+    font-size:12px;
+    font-style: italic;
+  }
+
+  #survey-container h1{
+    font-size: 36px;
+    margin-bottom: 4px;
+  }
+
+  #survey-container label{
+    font-size: 18px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  #survey-container button{
+    display: block;
+    margin: 0 auto;
+  }

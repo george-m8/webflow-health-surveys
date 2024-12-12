@@ -1,0 +1,28 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    margin-top: 72px;
+  }
+  
+  .my-slider {
+    width: 100%;
+  }
+  
+  .slider-label {
+    position: absolute;
+    bottom: 40px; /* space above slider */
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    transform: translateX(-50%);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
