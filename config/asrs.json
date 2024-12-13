@@ -203,27 +203,28 @@
     ],
     "partsInfo": {
         "A": {
-          "title": "Part A Score",
+          "title": "ADHD Screening Score",
           "maxScore": 6,
           "interpretation": {
             "threshold": 4,
-            "positiveMessage": "You have a high number of responses consistent with ADHD symptoms.",
-            "negativeMessage": "You did not meet the threshold for ADHD indicators in Part A.",
+            "positiveMessage": "This score provides a screening score for ADHD. A score of four or higher suggests that you have symptoms consistent with ADHD in adults.",
+            "negativeMessage": "symptoms highly consistent with ADHD in adults. A score of less than four suggests that you may not have ADHD.",
             "positiveResources": [
-              { "text": "What's next?", "url": "https://www.example.com/adhd-treatment" }
+              { "text": "Learn more about Verenigma for ADHD", "url": "https://www.verenigma.com/adhd" },
+              { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
             ],
             "negativeResources": [
-              { "text": "What's next?", "url": "https://www.example.com/general-resources" }
+              { "text": "Take the alexithymia (difficulty identifying feelings) test", "url": "https://www.verenigma.com/take-the-verenigma-test" }
             ]
           }
         },
         "B": {
-          "title": "Part B Score",
+          "title": "Further ADHD Frequency Score",
           "maxScore": 12,
           "interpretation": {
-            "note": "Part B doesn’t have a diagnostic threshold. It’s for additional insight.",
+            "note": "This score provides additional insight into the frequency of ADHD symptoms. There are no cutoff values available, but higher scores suggest more frequent symptoms.",
             "resources": [
-              { "text": "What's next?", "url": "https://www.example.com/additional-insight" }
+
             ]
           }
         }

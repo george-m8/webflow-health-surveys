@@ -2,52 +2,65 @@ document.addEventListener('DOMContentLoaded', initSurvey);
 
 let currentQuestionIndex = 0;
 let userAnswers = []; // Stores numeric values chosen for each question
+let userSelectedIndices = []; // Stores the chosen slider index per question
 
 // Set this to true to enable debug logs
 const debug = true;
 
 async function initSurvey() {
-  const container = document.getElementById('survey-container');
-
-  // Fetch the survey configuration
-  const response = await fetch('config/asrs.json');
-  const config = await response.json();
+    const container = document.getElementById('survey-container');
   
-  if (debug) {
-    console.log("Survey config loaded:", config);
-    console.log("Number of questions:", config.questions.length);
+    // Fetch the survey configuration
+    const response = await fetch('config/asrs.json');
+    const config = await response.json();
+  
+    if (debug) {
+      console.log("Survey config loaded:", config);
+      console.log("Number of questions:", config.questions.length);
+    }
+  
+    // Render the title and description
+    const titleElem = document.createElement('h1');
+    titleElem.textContent = config.title;
+    container.appendChild(titleElem);
+  
+    const descElem = document.createElement('p');
+    descElem.textContent = config.description;
+    container.appendChild(descElem);
+  
+    // Container for the question/slider
+    const questionContainer = document.createElement('div');
+    questionContainer.id = 'question-container';
+    container.appendChild(questionContainer);
+  
+    // Navigation buttons
+    const navContainer = document.createElement('div');
+    navContainer.className = 'navigation-container';
+  
+    const backBtn = document.createElement('button');
+    backBtn.id = 'backBtn';
+    backBtn.textContent = 'Back';
+    backBtn.style.display = 'none'; // Hidden for the first question
+    backBtn.addEventListener('click', () => handleBack(config));
+    navContainer.appendChild(backBtn);
+  
+    const nextBtn = document.createElement('button');
+    nextBtn.id = 'nextBtn';
+    nextBtn.textContent = 'Next';
+    nextBtn.addEventListener('click', () => handleNext(config));
+    navContainer.appendChild(nextBtn);
+  
+    container.appendChild(navContainer);
+  
+    // Create and append the result section here
+    const resultDiv = document.createElement('div');
+    resultDiv.id = 'result';
+    resultDiv.className = 'result';
+    resultDiv.style.display = 'none';
+    container.appendChild(resultDiv);
+  
+    showQuestion(config, currentQuestionIndex);
   }
-
-  // Render the title and description
-  const titleElem = document.createElement('h1');
-  titleElem.textContent = config.title;
-  container.appendChild(titleElem);
-
-  const descElem = document.createElement('p');
-  descElem.textContent = config.description;
-  container.appendChild(descElem);
-
-  // Container for the question/slider
-  const questionContainer = document.createElement('div');
-  questionContainer.id = 'question-container';
-  container.appendChild(questionContainer);
-  
-  // Navigation button
-  const nextBtn = document.createElement('button');
-  nextBtn.id = 'nextBtn';
-  nextBtn.textContent = 'Next';
-  nextBtn.addEventListener('click', () => handleNext(config));
-  container.appendChild(nextBtn);
-
-  // Result section
-  const resultDiv = document.createElement('div');
-  resultDiv.id = 'result';
-  resultDiv.className = 'result';
-  resultDiv.style.display = 'none';
-  container.appendChild(resultDiv);
-
-  showQuestion(config, currentQuestionIndex);
-}
 
 function showQuestion(config, index) {
     if (debug) console.log(`Showing question at index ${index}`);
@@ -60,6 +73,9 @@ function showQuestion(config, index) {
       if (debug) console.error("No question found at index", index);
       return;
     }
+
+    // Retrieve previously selected slider index if any
+    const previouslySelectedIndex = userSelectedIndices[index] !== undefined ? userSelectedIndices[index] : 0;
   
     // Create the label and append it directly to the questionContainer
     const label = document.createElement('label');
@@ -73,7 +89,7 @@ function showQuestion(config, index) {
     // Create the option label and append to sliderContainer
     const optionLabel = document.createElement('div');
     optionLabel.className = 'slider-label';
-    optionLabel.textContent = question.options[0].label;
+    optionLabel.textContent = question.options[previouslySelectedIndex].label; // Default or previous selection
     sliderContainer.appendChild(optionLabel);
   
     // Create the slider and append to sliderContainer
@@ -82,17 +98,28 @@ function showQuestion(config, index) {
     slider.min = 0;
     slider.max = question.options.length - 1;
     slider.step = 1;
-    slider.value = 0; // default to first option
+    slider.value = previouslySelectedIndex; // Restore previously selected index
+    slider.className = 'my-slider';
     sliderContainer.appendChild(slider);
   
     // Append sliderContainer to questionContainer
     questionContainer.appendChild(sliderContainer);
   
+    // Update label dynamically on slider input
     slider.addEventListener('input', () => {
       const val = parseInt(slider.value, 10);
-      optionLabel.textContent = question.options[val].label;
+      optionLabel.textContent = question.options[val]?.label || "Unknown";
     });
-  }
+
+    // Initialize the slider label movement
+    initSliderLabel('.slider-container', () => question.options, debug);
+
+    // Show/hide back button
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+    }
+}
 
 function handleNext(config) {
   const question = config.questions[currentQuestionIndex];
@@ -118,9 +145,10 @@ function handleNext(config) {
 
   const chosenOptionValue = question.options[chosenIndex].value;
   userAnswers[currentQuestionIndex] = chosenOptionValue;
+  userSelectedIndices[currentQuestionIndex] = chosenIndex;
 
   if (debug) {
-    console.log(`Answer recorded for Q${currentQuestionIndex}:`, chosenOptionValue);
+    console.log(`Answer recorded for Q${currentQuestionIndex}:`, chosenOptionValue, `(Index: ${chosenIndex})`);
   }
 
   // Move to the next question
@@ -136,6 +164,13 @@ function handleNext(config) {
   }
 }
 
+function handleBack(config) {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    showQuestion(config, currentQuestionIndex);
+  }
+}
+
 function showResults(config) {
     // Hide the question container
     const questionContainer = document.getElementById('question-container');
@@ -143,10 +178,14 @@ function showResults(config) {
       questionContainer.style.display = 'none';
     }
   
-    // Hide the Next button
+    // Hide the Next and Back buttons
     const nextBtn = document.getElementById('nextBtn');
     if (nextBtn) {
       nextBtn.style.display = 'none';
+    }
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.style.display = 'none';
     }
   
     const resultDiv = document.getElementById('result');
@@ -240,4 +279,4 @@ function showResults(config) {
         }
       }
     }
-  }
+}

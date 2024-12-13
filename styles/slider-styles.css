@@ -12,14 +12,19 @@
   
   .slider-label {
     position: absolute;
-    bottom: 40px; /* space above slider */
-    background: #eee;
+    bottom: 40px; /* Space above slider */
+    background: white; /* White fill */
+    border: 2px solid var(--primary-color); /* Primary color border */
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 8px; /* Rounded corners */
     text-align: center;
     white-space: nowrap;
     font-size: 0.9rem;
+    color: var(--primary-color); /* Match text color to primary color */
+    font-weight: bold; /* Make text stand out */
     transform: translateX(-50%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1; /* Ensure it appears above slider */
   }
   
   label {
