@@ -14,7 +14,7 @@ async function initSurvey() {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const jsonUrl = isLocal 
         ? 'config/asrs.json' // Local path
-        : 'https://yoursurvey.netlify.app/config/asrs.json'; // Hosted path
+        : 'https://health-surveys.netlify.app/config/asrs.json'; // Hosted path
 
     try {
         // Fetch the survey configuration
