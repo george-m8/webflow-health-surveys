@@ -9,58 +9,74 @@ const debug = true;
 
 async function initSurvey() {
     const container = document.getElementById('survey-container');
-  
-    // Fetch the survey configuration
-    const response = await fetch('config/asrs.json');
-    const config = await response.json();
-  
-    if (debug) {
-      console.log("Survey config loaded:", config);
-      console.log("Number of questions:", config.questions.length);
+
+    // Determine if we're in a local or production environment
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const jsonUrl = isLocal 
+        ? 'config/asrs.json' // Local path
+        : 'https://yoursurvey.netlify.app/config/asrs.json'; // Hosted path
+
+    try {
+        // Fetch the survey configuration
+        const response = await fetch(jsonUrl);
+        if (!response.ok) {
+            throw new Error(`Failed to load JSON: ${response.status}`);
+        }
+        const config = await response.json();
+
+        if (debug) {
+            console.log("Survey config loaded:", config);
+            console.log("Number of questions:", config.questions.length);
+        }
+
+        // Render the title and description
+        const titleElem = document.createElement('h1');
+        titleElem.textContent = config.title;
+        container.appendChild(titleElem);
+
+        const descElem = document.createElement('p');
+        descElem.textContent = config.description;
+        container.appendChild(descElem);
+
+        // Container for the question/slider
+        const questionContainer = document.createElement('div');
+        questionContainer.id = 'question-container';
+        container.appendChild(questionContainer);
+
+        // Navigation buttons
+        const navContainer = document.createElement('div');
+        navContainer.className = 'navigation-container';
+
+        const backBtn = document.createElement('button');
+        backBtn.id = 'backBtn';
+        backBtn.textContent = 'Back';
+        backBtn.style.display = 'none'; // Hidden for the first question
+        backBtn.addEventListener('click', () => handleBack(config));
+        navContainer.appendChild(backBtn);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'nextBtn';
+        nextBtn.textContent = 'Next';
+        nextBtn.addEventListener('click', () => handleNext(config));
+        navContainer.appendChild(nextBtn);
+
+        container.appendChild(navContainer);
+
+        // Create and append the result section here
+        const resultDiv = document.createElement('div');
+        resultDiv.id = 'result';
+        resultDiv.className = 'result';
+        resultDiv.style.display = 'none';
+        container.appendChild(resultDiv);
+
+        showQuestion(config, currentQuestionIndex);
+    } catch (error) {
+        console.error("Error initializing survey:", error);
+        const errorElem = document.createElement('p');
+        errorElem.textContent = "Failed to load the survey. Please try again later.";
+        container.appendChild(errorElem);
     }
-  
-    // Render the title and description
-    const titleElem = document.createElement('h1');
-    titleElem.textContent = config.title;
-    container.appendChild(titleElem);
-  
-    const descElem = document.createElement('p');
-    descElem.textContent = config.description;
-    container.appendChild(descElem);
-  
-    // Container for the question/slider
-    const questionContainer = document.createElement('div');
-    questionContainer.id = 'question-container';
-    container.appendChild(questionContainer);
-  
-    // Navigation buttons
-    const navContainer = document.createElement('div');
-    navContainer.className = 'navigation-container';
-  
-    const backBtn = document.createElement('button');
-    backBtn.id = 'backBtn';
-    backBtn.textContent = 'Back';
-    backBtn.style.display = 'none'; // Hidden for the first question
-    backBtn.addEventListener('click', () => handleBack(config));
-    navContainer.appendChild(backBtn);
-  
-    const nextBtn = document.createElement('button');
-    nextBtn.id = 'nextBtn';
-    nextBtn.textContent = 'Next';
-    nextBtn.addEventListener('click', () => handleNext(config));
-    navContainer.appendChild(nextBtn);
-  
-    container.appendChild(navContainer);
-  
-    // Create and append the result section here
-    const resultDiv = document.createElement('div');
-    resultDiv.id = 'result';
-    resultDiv.className = 'result';
-    resultDiv.style.display = 'none';
-    container.appendChild(resultDiv);
-  
-    showQuestion(config, currentQuestionIndex);
-  }
+}
 
 function showQuestion(config, index) {
     if (debug) console.log(`Showing question at index ${index}`);
