@@ -1,10 +1,10 @@
-body .container .survey-container {
+body #health-surveys-container {
     font-family: sans-serif;
     margin: 20px;
     line-height: 1.5;
   }
   
-  .container {
+  #health-surveys-container.container {
     max-width: 600px;
     margin: auto;
   }
@@ -51,7 +51,7 @@ body .container .survey-container {
     display: block;
   }
 
-  .navigation-container{
+  #health-surveys-container .navigation-container{
     display: flex;
     flex-direction: row;
     justify-content: center;

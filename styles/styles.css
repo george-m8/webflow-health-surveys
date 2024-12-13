@@ -5,22 +5,22 @@
     --button-hover-color: #0056b3;
 }
 
-  * {
+#health-surveys-container * {
     box-sizing: border-box; /* Ensures consistent sizing for all elements */
   }
   
-  body {
+  body #health-surveys-container {
     margin: 0;
     font-family: sans-serif;
     line-height: 1.5;
   }
   
-  .container {
+  #health-surveys-container.container {
     max-width: 600px;
     margin: auto;
   }
   
-  #survey-container {
+  #health-surveys-container #survey-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,7 +46,7 @@
     margin-bottom: 20px;
   }
   
-  label {
+  #health-surveys-container label {
     display: block;
     font-size: 18px;
     margin-bottom: 12px;
@@ -55,7 +55,7 @@
     color: #333;
   }
   
-  .my-slider {
+  #health-surveys-container .my-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -67,11 +67,11 @@
     transition: opacity 0.2s;
   }
   
-  .my-slider:hover {
+  #health-surveys-container .my-slider:hover {
     opacity: 1;
   }
   
-  .slider-label {
+  #health-surveys-container .slider-label {
     position: absolute;
     bottom: 40px;
     background: var(--highlight-color);
@@ -85,7 +85,7 @@
     border: 1px solid #ccc;
   }
   
-  .navigation-container {
+  #health-surveys-container .navigation-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +95,7 @@
     position: relative;
   }
   
-  #survey-container button {
+  #health-surveys-container #survey-container button {
     display: inline-block;
     padding: 10px 20px;
     border: none;
@@ -111,7 +111,7 @@
     background-color: var(--button-hover-color);
   }
   
-  .result {
+  .#health-surveys-container result {
     margin-top: 30px;
     padding: 20px;
     border: 2px solid var(--primary-color);
@@ -120,39 +120,39 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .result h2 {
+  #health-surveys-container .result h2 {
     color: var(--primary-color);
     font-size: 24px;
     margin-bottom: 10px;
     text-align: center;
   }
   
-  .result h3 {
+  #health-surveys-container .result h3 {
     color: #333;
     font-size: 18px;
     margin-top: 15px;
   }
   
-  .result p {
+  #health-surveys-container .result p {
     color: #555;
     font-size: 14px;
   }
   
-  .result ul {
+  #health-surveys-container .result ul {
     list-style-type: none;
     padding: 0;
   }
   
-  .result ul li {
+  #health-surveys-container .result ul li {
     margin-bottom: 10px;
   }
   
-  .result ul li a {
+  #health-surveys-container .result ul li a {
     color: var(--primary-color);
     text-decoration: none;
   }
   
-  .result ul li a:hover {
+  #health-surveys-container .result ul li a:hover {
     text-decoration: underline;
   }
   
@@ -170,17 +170,17 @@
 
   /* Constant button position tweaks */
 
-* {
+  #health-surveys-container * {
   box-sizing: border-box; /* Ensures consistent sizing for all elements */
 }
 
-body {
+body #health-surveys-container {
   margin: 0;
   font-family: sans-serif;
   line-height: 1.5;
 }
 
-#survey-container {
+#health-surveys-container #survey-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -222,7 +222,7 @@ body {
     color: #333;
   }
 
-  .navigation-container {
+  #health-surveys-container .navigation-container {
     display: flex;
     justify-content: center;
     align-items: center;
