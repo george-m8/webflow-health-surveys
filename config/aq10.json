@@ -1,0 +1,124 @@
+{
+    "title": "Adult Self-Report Scale (ASRS) for ADHD",
+    "description": "This test is a screening measure for ADHD. It is not a substitute for a professional diagnosis.",
+    "questions": [
+      {
+        "part": "A",
+        "text": "I often notice small sounds when others do not.",
+        "options": [
+            { "label": "Definitely Agree", "value": 1 },
+            { "label": "Slightly Agree", "value": 1 },
+            { "label": "Slightly Disagree", "value": 0 },
+            { "label": "Definitely Disagree", "value": 0 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I usually concentrate more on the whole picture, rather than the small details.",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I find it easy to do more than one thing at once",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "If there is an interruption, I can switch back to what I was doing very quickly",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I find it easy to 'read between the lines' when someone is talking to me",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I know how to tell if someone listening to me is getting bored",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "When I'm reading a story I find it difficult to work out the characters' intentions",
+        "options": [
+          { "label": "Definitely Agree", "value": 1 },
+          { "label": "Slightly Agree", "value": 1 },
+          { "label": "Slightly Disagree", "value": 0 },
+          { "label": "Definitely Disagree", "value": 0 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I like to collect information about categories of things (e.g. types of car, bird, train, plant etc.)",
+        "options": [
+          { "label": "Definitely Agree", "value": 1 },
+          { "label": "Slightly Agree", "value": 1 },
+          { "label": "Slightly Disagree", "value": 0 },
+          { "label": "Definitely Disagree", "value": 0 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I find it easy to work out what someone is thinking or feeling just by looking at their face",
+        "options": [
+            { "label": "Definitely Agree", "value": 0 },
+            { "label": "Slightly Agree", "value": 0 },
+            { "label": "Slightly Disagree", "value": 1 },
+            { "label": "Definitely Disagree", "value": 1 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I find it difficult to work out people's intentions",
+        "options": [
+          { "label": "Definitely Agree", "value": 1 },
+          { "label": "Slightly Agree", "value": 1 },
+          { "label": "Slightly Disagree", "value": 0 },
+          { "label": "Definitely Disagree", "value": 0 }
+        ]
+      }
+    ],
+    "partsInfo": {
+        "A": {
+          "title": "AQ-10 Score",
+          "maxScore": 10,
+          "interpretation": {
+            "threshold": 6,
+            "positiveMessage": "This score provides a screening score for ADHD. A score of four or higher suggests that you have symptoms consistent with ADHD in adults.",
+            "negativeMessage": "symptoms highly consistent with ADHD in adults. A score of less than four suggests that you may not have ADHD.",
+            "positiveResources": [
+              { "text": "Learn more about Verenigma for ADHD", "url": "https://www.verenigma.com/adhd" },
+              { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
+            ],
+            "negativeResources": [
+              { "text": "Take the alexithymia (difficulty identifying feelings) test", "url": "https://www.verenigma.com/take-the-verenigma-test" }
+            ]
+          }
+        }
+      }
+    }

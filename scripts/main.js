@@ -7,17 +7,31 @@ let userSelectedIndices = []; // Stores the chosen slider index per question
 // Set this to true to enable debug logs
 const debug = true;
 
+function getSurveyFile() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const survey = urlParams.get('survey') || 'asrs.json'; // Default to 'asrs.json' if no parameter
+    return `config/${survey}`; // Prepend 'config/' to the file name
+}
+
 async function initSurvey() {
     const container = document.getElementById('survey-container');
 
-    // Determine if we're in a local or production environment
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const jsonUrl = isLocal 
-        ? 'config/asrs.json' // Local path
-        : 'https://health-surveys.netlify.app/config/asrs.json'; // Hosted path
+    // Define the base URLs
+    const localBaseUrl = ''; // Local files are directly accessible, no need for a base URL
+    const netlifyBaseUrl = 'https://health-surveys.netlify.app/';
+
+    // Check if the script is running locally
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.hostname === '[::]' || 
+                    window.location.hostname === '[::1]';
+
+    // Determine the base URL and JSON file
+    const baseUrl = isLocal ? localBaseUrl : netlifyBaseUrl;
+    const jsonFile = getSurveyFile(); // Determine the JSON file to use
+    const jsonUrl = `${baseUrl}${jsonFile}`;
 
     try {
-        // Fetch the survey configuration
         const response = await fetch(jsonUrl);
         if (!response.ok) {
             throw new Error(`Failed to load JSON: ${response.status}`);

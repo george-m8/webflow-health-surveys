@@ -11,7 +11,9 @@ Notes:
     - [ ] It SHOULD pull the labels from the json file for each question so that it can work for different surveys where the labels vary question to question
     - [ ] Should move the inline code from html into the slider-style.js file.
     - [x] Have found that this code breaks after first question...
-    - Works for now so will leave as is.
+    - For Aq10 with different labels we are having issues, currently just the first question has wrong labels, rest are fine
+        - [ ] work on simplifying code
+        - [ ] labels should always pull from json, no point in default vals - they will be wrong.
 - [ ] Add AQ-10 surey
 - [ ] Redo ERQ survey using this project
 - [ ] Redo TAS-DIF
