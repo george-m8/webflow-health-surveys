@@ -7,20 +7,20 @@
 
 #health-surveys-container * {
     box-sizing: border-box; /* Ensures consistent sizing for all elements */
-  }
+}
   
-  body #health-surveys-container {
+body #health-surveys-container {
     margin: 0;
     font-family: sans-serif;
     line-height: 1.5;
-  }
+}
   
-  #health-surveys-container.container {
+#health-surveys-container.container {
     max-width: 600px;
     margin: auto;
-  }
+}
   
-  #health-surveys-container #survey-container {
+#health-surveys-container #survey-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,16 +29,16 @@
     background: var(--secondary-color);
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  #survey-container h1 {
+#health-surveys-container #survey-container h1 {
     font-size: 36px;
     text-align: center;
     margin-bottom: 8px;
     color: var(--primary-color);
-  }
+}
   
-  #survey-container p {
+#health-surveys-container #survey-container p {
     font-size: 12px;
     font-style: italic;
     text-align: center;
@@ -46,16 +46,16 @@
     margin-bottom: 20px;
   }
   
-  #health-surveys-container label {
+#health-surveys-container label {
     display: block;
     font-size: 18px;
     margin-bottom: 12px;
     margin-top: 20px;
     text-align: center;
     color: #333;
-  }
+}
   
-  #health-surveys-container .my-slider {
+#health-surveys-container .my-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -65,13 +65,13 @@
     outline: none;
     opacity: 0.8;
     transition: opacity 0.2s;
-  }
+}
   
-  #health-surveys-container .my-slider:hover {
+#health-surveys-container .my-slider:hover {
     opacity: 1;
-  }
+}
   
-  #health-surveys-container .slider-label {
+#health-surveys-container .slider-label {
     position: absolute;
     bottom: 40px;
     background: var(--highlight-color);
@@ -83,9 +83,9 @@
     transform: translateX(-50%);
     color: #333;
     border: 1px solid #ccc;
-  }
+}
   
-  #health-surveys-container .navigation-container {
+#health-surveys-container .navigation-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,9 +93,9 @@
     padding: 10px 0; /* Ensure spacing from the bottom */
     background-color: var(--secondary-color); /* Matches container */
     position: relative;
-  }
+}
   
-  #health-surveys-container #survey-container button {
+#health-surveys-container #survey-container button {
     display: inline-block;
     padding: 10px 20px;
     border: none;
@@ -105,108 +105,107 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
-  #survey-container button:hover {
+#survey-container button:hover {
     background-color: var(--button-hover-color);
-  }
+}
   
-  .#health-surveys-container result {
+#health-surveys-container .result {
     margin-top: 30px;
     padding: 20px;
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: linear-gradient(135deg, var(--secondary-color), #fff);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  #health-surveys-container .result h2 {
+#health-surveys-container .result h2 {
     color: var(--primary-color);
     font-size: 24px;
     margin-bottom: 10px;
     text-align: center;
-  }
+}
   
-  #health-surveys-container .result h3 {
+#health-surveys-container .result h3 {
     color: #333;
     font-size: 18px;
     margin-top: 15px;
-  }
+}
   
-  #health-surveys-container .result p {
+#health-surveys-container .result p {
     color: #555;
     font-size: 14px;
-  }
+}
   
-  #health-surveys-container .result ul {
+#health-surveys-container .result ul {
     list-style-type: none;
     padding: 0;
-  }
+}
   
-  #health-surveys-container .result ul li {
+#health-surveys-container .result ul li {
     margin-bottom: 10px;
-  }
+}
   
-  #health-surveys-container .result ul li a {
+#health-surveys-container .result ul li a {
     color: var(--primary-color);
     text-decoration: none;
-  }
+}
   
-  #health-surveys-container .result ul li a:hover {
+#health-surveys-container .result ul li a:hover {
     text-decoration: underline;
-  }
+}
   
-  /* Fade animation for question change */
-  #question-container {
+/* Fade animation for question change */
+#health-surveys-container #question-container {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
-  }
+}
   
-  #question-container.hidden {
+#health-surveys-container #question-container.hidden {
     opacity: 0;
     pointer-events: none;
-  }
+}
 
 
-  /* Constant button position tweaks */
-
-  #health-surveys-container * {
-  box-sizing: border-box; /* Ensures consistent sizing for all elements */
+/* Constant button position tweaks */
+#health-surveys-container * {
+    box-sizing: border-box; /* Ensures consistent sizing for all elements */
 }
 
 body #health-surveys-container {
-  margin: 0;
-  font-family: sans-serif;
-  line-height: 1.5;
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.5;
 }
 
 #health-surveys-container #survey-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh; /* Full viewport height */
-  padding: 20px;
-  background: var(--secondary-color);
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#survey-container h1 {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 8px;
-  color: var(--primary-color);
+#health-surveys-container #survey-container h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--primary-color);
 }
 
-#survey-container p {
-  font-size: 12px;
-  font-style: italic;
-  text-align: center;
-  color: #555;
-  margin-bottom: 20px;
+#health-surveys-container #survey-container p {
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-#question-container {
+#health-surveys-container #question-container {
     flex-grow: 1;
     display: flex;
     justify-content: center; /* Center content vertically */
@@ -214,15 +213,15 @@ body #health-surveys-container {
     margin-bottom: 20px;
     overflow-y: auto; /* Scrollable if content is too long */
     flex-direction: column;
-  }
+}
 
-  #question-container label {
+#health-surveys-container #question-container label {
     text-align: center;
     font-size: 18px;
     color: #333;
-  }
+}
 
-  #health-surveys-container .navigation-container {
+#health-surveys-container .navigation-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,4 +229,4 @@ body #health-surveys-container {
     padding: 10px 0; /* Ensure spacing from the bottom */
     background-color: var(--secondary-color); /* Matches container */
     position: relative;
-  }
+}

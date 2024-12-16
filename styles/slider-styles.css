@@ -1,19 +1,19 @@
-.slider-container {
+#health-surveys-container .slider-container {
     position: relative;
     width: 100%;
     max-width: 300px;
     margin: 20px auto;
     margin-top: 72px;
-  }
+}
   
-  .my-slider {
+#health-surveys-container .my-slider {
     width: 100%;
-  }
+}
   
-  .slider-label {
+#health-surveys-container .slider-label {
     position: absolute;
     bottom: 40px; /* Space above slider */
-    background: white; /* White fill */
+    background: none;
     border: 2px solid var(--primary-color); /* Primary color border */
     padding: 5px 10px;
     border-radius: 8px; /* Rounded corners */
@@ -25,9 +25,9 @@
     transform: translateX(-50%);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     z-index: 1; /* Ensure it appears above slider */
-  }
+}
   
-  label {
+#health-surveys-container label {
     display: block;
     margin-bottom: 10px;
-  }
+}
