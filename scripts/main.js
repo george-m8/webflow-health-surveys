@@ -5,12 +5,12 @@ let userAnswers = []; // Stores numeric values chosen for each question
 let userSelectedIndices = []; // Stores the chosen slider index per question
 
 // Set this to true to enable debug logs
-const debug = true;
+const debug = false;
 
 function getSurveyFile() {
     const urlParams = new URLSearchParams(window.location.search);
-    const survey = urlParams.get('survey') || 'asrs.json'; // Default to 'asrs.json' if no parameter
-    return `config/${survey}`; // Prepend 'config/' to the file name
+    const survey = urlParams.get('survey') || 'asrs'; // Default to 'asrs.json' if no parameter
+    return `config/${survey}.json`;
 }
 
 async function initSurvey() {
@@ -93,62 +93,49 @@ async function initSurvey() {
 }
 
 function showQuestion(config, index) {
-    if (debug) console.log(`Showing question at index ${index}`);
-    
+    if (debug) console.log(`[showQuestion] Showing question at index ${index}`);
+
     const questionContainer = document.getElementById('question-container');
     questionContainer.innerHTML = ''; // Clear existing content
-  
+
     const question = config.questions[index];
     if (!question) {
-      if (debug) console.error("No question found at index", index);
-      return;
+        if (debug) console.error("[showQuestion] No question found at index", index);
+        return;
     }
 
-    // Retrieve previously selected slider index if any
     const previouslySelectedIndex = userSelectedIndices[index] !== undefined ? userSelectedIndices[index] : 0;
-  
-    // Create the label and append it directly to the questionContainer
-    const label = document.createElement('label');
-    label.textContent = question.text;
-    questionContainer.appendChild(label);
-  
-    // Create a slider container div
+    const labelElem = document.createElement('label');
+    labelElem.textContent = question.text;
+    questionContainer.appendChild(labelElem);
+
     const sliderContainer = document.createElement('div');
     sliderContainer.className = 'slider-container';
-  
-    // Create the option label and append to sliderContainer
+    sliderContainer.dataset.options = JSON.stringify(question.options);
+
     const optionLabel = document.createElement('div');
     optionLabel.className = 'slider-label';
-    optionLabel.textContent = question.options[previouslySelectedIndex].label; // Default or previous selection
+    optionLabel.textContent = question.options[previouslySelectedIndex]?.label || "Error";
     sliderContainer.appendChild(optionLabel);
-  
-    // Create the slider and append to sliderContainer
+
     const slider = document.createElement('input');
     slider.type = 'range';
     slider.min = 0;
     slider.max = question.options.length - 1;
     slider.step = 1;
-    slider.value = previouslySelectedIndex; // Restore previously selected index
+    slider.value = previouslySelectedIndex;
     slider.className = 'my-slider';
     sliderContainer.appendChild(slider);
-  
-    // Append sliderContainer to questionContainer
+
     questionContainer.appendChild(sliderContainer);
-  
-    // Update label dynamically on slider input
-    slider.addEventListener('input', () => {
-      const val = parseInt(slider.value, 10);
-      optionLabel.textContent = question.options[val]?.label || "Unknown";
-    });
 
-    // Initialize the slider label movement
-    initSliderLabel('.slider-container', () => question.options, debug);
-
-    // Show/hide back button
+    // Back button logic if any
     const backBtn = document.getElementById('backBtn');
     if (backBtn) {
-      backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+        backBtn.style.display = index === 0 ? 'none' : 'inline-block';
     }
+
+    if (debug) console.log("[showQuestion] Question rendered. The observer in slider-label.js should handle initialization.");
 }
 
 function handleNext(config) {

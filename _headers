@@ -1,4 +1,5 @@
-/config/asrs.json
-  Access-Control-Allow-Origin: *
+/config/*
+  Access-Control-Allow-Origin: https://verenigma.webflow.io
+  Access-Control-Allow-Origin: https://www.verenigma.com
   Access-Control-Allow-Methods: GET, OPTIONS
   Access-Control-Allow-Headers: Content-Type

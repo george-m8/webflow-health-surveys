@@ -11,17 +11,4 @@
       </div>
       <script src="scripts/main.js"></script>
       <script src="scripts/slider-label.js"></script>
-      <script>
-            document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM fully loaded.");
-
-            // Provide a callback to fetch options dynamically per slider-container
-            initSliderLabel('.slider-container', (container) => {
-                const options = container.dataset.options
-                ? JSON.parse(container.dataset.options)
-                : ["Never", "Rarely", "Sometimes", "Often", "Very Often"];
-                return options.map((label, index) => ({ label, value: index }));
-            }, true);
-            });
-      </script>
 </body>
