@@ -1,6 +1,6 @@
 {
-    "title": "Adult Self-Report Scale (ASRS) for ADHD",
-    "description": "This test is a screening measure for ADHD. It is not a substitute for a professional diagnosis.",
+    "title": "Self-Report Scale for Austism (AQ-10)",
+    "description": "This test is a screening measure for Autism. It is not a substitute for a professional diagnosis.",
     "questions": [
       {
         "part": "A",
@@ -109,10 +109,10 @@
           "maxScore": 10,
           "interpretation": {
             "threshold": 6,
-            "positiveMessage": "This score provides a screening score for ADHD. A score of four or higher suggests that you have symptoms consistent with ADHD in adults.",
-            "negativeMessage": "symptoms highly consistent with ADHD in adults. A score of less than four suggests that you may not have ADHD.",
+            "positiveMessage": "This score provides a screening score for Autism. A score of six or higher suggests that you have symptoms consistent with Autism. The higher the score, the more Autism symtoms you have reported.",
+            "negativeMessage": "This score provides a screening score for Autism. A score of less than six or higher suggests that you do not have symptoms consistent with Autism. The lower the score, the less Autism symtoms you have reported.",
             "positiveResources": [
-              { "text": "Learn more about Verenigma for ADHD", "url": "https://www.verenigma.com/adhd" },
+              { "text": "Learn more about Verenigma for Autism", "url": "https://www.verenigma.com/verenigma-for-austism-landing" },
               { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
             ],
             "negativeResources": [
