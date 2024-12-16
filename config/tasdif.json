@@ -1,0 +1,118 @@
+{
+    "title": "Self-Report Scale for Alexithymua (TAS [Difficulty Identifying Feelings])",
+    "description": "This test is a screening measure for Alexithymia using only the 'Difficulty Identifying Feelings' sub-scale. It is not a substitute for a professional diagnosis.",
+    "questions": [
+      {
+        "part": "A",
+        "text": "I am often confused about what emotion I am feeling.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I have physical sensations that even doctors don't understand.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "When I am upset. I don't know if I am sad, frightened, or angry.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I am often puzzled by sensations in my body.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I have feelings that I can't quite identify.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I don't know what's going on inside me.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I often don't know why I am angry.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Agree", "value": 4 },
+          { "label": "Strongly Agree", "value": 5 }
+        ]
+      }
+    ],
+  "partsInfo": {
+    "A": {
+      "title": "TAS-DIF Score",
+      "maxScore": 35,
+      "interpretation": {
+        "gradeBoundaries": [
+          {
+            "minScore": 0,
+            "maxScore": 5,
+            "message": "Your score suggests low risk.",
+            "resources": [
+              { "text": "General well-being info", "url": "https://example.com/low-risk" }
+            ]
+          },
+          {
+            "minScore": 6,
+            "maxScore": 20,
+            "message": "Your score suggests moderate symptoms.",
+            "resources": [
+              { "text": "Learn about moderate support options", "url": "https://example.com/moderate-support" }
+            ]
+          },
+          {
+            "minScore": 21,
+            "maxScore": 35,
+            "message": "Your score suggests high severity.",
+            "resources": [
+              { "text": "Explore specialized help", "url": "https://example.com/high-severity" }
+            ]
+          }
+        ],
+        "note": "These results are only a guide and not a diagnosis."
+      }
+    }
+  }
+}

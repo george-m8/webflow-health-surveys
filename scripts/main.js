@@ -5,7 +5,7 @@ let userAnswers = []; // Stores numeric values chosen for each question
 let userSelectedIndices = []; // Stores the chosen slider index per question
 
 // Set this to true to enable debug logs
-const debug = false;
+const debug = true;
 
 function getSurveyFile() {
     if (typeof window.survey !== 'undefined' && window.survey) {
@@ -193,26 +193,20 @@ function handleBack(config) {
 }
 
 function showResults(config) {
-    // Hide the question container
+    // Hide question container and buttons
     const questionContainer = document.getElementById('question-container');
-    if (questionContainer) {
-      questionContainer.style.display = 'none';
-    }
-  
-    // Hide the Next and Back buttons
+    if (questionContainer) questionContainer.style.display = 'none';
+
     const nextBtn = document.getElementById('nextBtn');
-    if (nextBtn) {
-      nextBtn.style.display = 'none';
-    }
+    if (nextBtn) nextBtn.style.display = 'none';
+
     const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-      backBtn.style.display = 'none';
-    }
-  
+    if (backBtn) backBtn.style.display = 'none';
+
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '';
     resultDiv.style.display = 'block';
-  
+
     const scoresByPart = {};
     config.questions.forEach((q, idx) => {
       if (!scoresByPart[q.part]) {
@@ -221,46 +215,87 @@ function showResults(config) {
       const val = parseInt(userAnswers[idx], 10);
       scoresByPart[q.part] += isNaN(val) ? 0 : val;
     });
-  
+
     if (debug) {
       console.log("Scores by part:", scoresByPart);
       console.log("partsInfo from config:", config.partsInfo);
     }
-  
+
     for (const part in scoresByPart) {
       const partScore = scoresByPart[part];
       const partData = config.partsInfo[part];
-  
+
       if (!partData) {
         if (debug) console.error(`No partsInfo found for part '${part}'`);
         continue;
       }
-  
-      // Display score as partScore/maxScore if maxScore exists, otherwise just partScore
+
       const scoreDisplay = partData.maxScore !== undefined 
         ? `${partScore}/${partData.maxScore}` 
         : partScore;
-  
+
       const partTitle = document.createElement('h2');
       partTitle.textContent = `${partData.title}: ${scoreDisplay}`;
       resultDiv.appendChild(partTitle);
-  
+
       const interpretation = partData.interpretation;
-      if (interpretation.threshold !== undefined) {
+      if (!interpretation) {
+        // No interpretation, just continue
+        continue;
+      }
+
+      // Check for gradeBoundaries first
+      if (Array.isArray(interpretation.gradeBoundaries)) {
+        // Find the boundary that matches partScore
+        const boundary = interpretation.gradeBoundaries.find(b => 
+          partScore >= b.minScore && partScore <= b.maxScore
+        );
+
+        if (boundary) {
+          const message = document.createElement('p');
+          message.textContent = boundary.message;
+          resultDiv.appendChild(message);
+
+          if (boundary.resources && boundary.resources.length > 0) {
+            const resourceTitle = document.createElement('h3');
+            resourceTitle.textContent = "What's next?";
+            resultDiv.appendChild(resourceTitle);
+
+            const resList = document.createElement('ul');
+            boundary.resources.forEach(resource => {
+              const li = document.createElement('li');
+              const link = document.createElement('a');
+              link.href = resource.url;
+              link.textContent = resource.text;
+              link.target = '_blank';
+              li.appendChild(link);
+              resList.appendChild(li);
+            });
+            resultDiv.appendChild(resList);
+          }
+        } else {
+          // No boundary found for this score - fallback to note if any
+          if (interpretation.note) {
+            const note = document.createElement('p');
+            note.textContent = interpretation.note;
+            resultDiv.appendChild(note);
+          }
+        }
+      } else if (interpretation.threshold !== undefined) {
+        // Threshold logic (existing)
         const meetsThreshold = partScore >= interpretation.threshold;
         const message = document.createElement('p');
         message.textContent = meetsThreshold ? 
           interpretation.positiveMessage : 
           interpretation.negativeMessage;
         resultDiv.appendChild(message);
-  
-        // Show appropriate resources based on threshold result
+
         const resources = meetsThreshold ? interpretation.positiveResources : interpretation.negativeResources;
         if (resources && resources.length > 0) {
           const resourceTitle = document.createElement('h3');
           resourceTitle.textContent = "What's next?";
           resultDiv.appendChild(resourceTitle);
-  
+
           const resList = document.createElement('ul');
           resources.forEach(resource => {
             const li = document.createElement('li');
@@ -274,18 +309,18 @@ function showResults(config) {
           resultDiv.appendChild(resList);
         }
       } else {
-        // No threshold, just show a note and resources if any
+        // No threshold, no gradeBoundaries, just show note/resources
         if (interpretation.note) {
           const note = document.createElement('p');
           note.textContent = interpretation.note;
           resultDiv.appendChild(note);
         }
-  
+
         if (interpretation.resources && interpretation.resources.length > 0) {
           const resourceTitle = document.createElement('h3');
           resourceTitle.textContent = "What's next?";
           resultDiv.appendChild(resourceTitle);
-  
+
           const resList = document.createElement('ul');
           interpretation.resources.forEach(resource => {
             const li = document.createElement('li');
