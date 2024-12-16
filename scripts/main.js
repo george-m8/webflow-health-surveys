@@ -8,6 +8,10 @@ let userSelectedIndices = []; // Stores the chosen slider index per question
 const debug = false;
 
 function getSurveyFile() {
+    if (typeof window.survey !== 'undefined' && window.survey) {
+        if (debug) console.log("[getSurveyFile] Using global survey:", window.survey);
+        return `config/${window.survey}.json`;
+    }
     const urlParams = new URLSearchParams(window.location.search);
     const survey = urlParams.get('survey') || 'asrs'; // Default to 'asrs.json' if no parameter
     return `config/${survey}.json`;
