@@ -116,7 +116,7 @@
               { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
             ],
             "negativeResources": [
-              { "text": "Take the alexithymia (difficulty identifying feelings) test", "url": "https://www.verenigma.com/take-the-verenigma-test" }
+              { "text": "Take the alexithymia (difficulty identifying feelings) test", "url": "https://www.verenigma.com/mental-health-tests?survey=tasdif" }
             ]
           }
         }
