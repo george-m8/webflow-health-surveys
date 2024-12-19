@@ -109,7 +109,7 @@
             "message": "Your score suggests that you suffer from Alexithymia and difficulty identify feelings. Verenigma helps users to analyse, understand and identify feelings/emotions, improving emotional regulation and Alexithymia symptoms.",
             "resources": [
               { "text": "Find out more about Verenigma", "url": "https://www.verenigma.com/" },
-              { "text": "Read more about Alexithymia", "url": "https://www.verenigma.com/blog-posts/behavioural-characteristics-of-alexithymia" },
+              { "text": "Read more about Alexithymia", "url": "https://www.verenigma.com/blog-posts/behavioural-characteristics-of-alexithymia", "target": "_blank" },
               { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
             ]
           }

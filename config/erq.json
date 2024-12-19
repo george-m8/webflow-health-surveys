@@ -87,7 +87,7 @@
       "maxScore": 7,
       "scoreMethod": "average",
       "interpretation": {
-        "note": "",
+        "note": "This score measures your ability to change the way you think about a situation in order to control your emotions. The higher the score, the more you use cognitive reappraisal to regulate your emotions. It is typically associated with better mental health outcomes.",
         "resources": [
 
         ]
@@ -98,9 +98,12 @@
       "maxScore": 7,
       "scoreMethod": "average",
       "interpretation": {
-        "note": "",
+        "note": "This score measures your tendency to control your emotions by not expressing them. The higher the score, the more you use emotional suppression to regulate your emotions. It is typically associated with worse mental health outcomes. Using the Verenigma app can help users to find better methods and strategies to regulate their emotions.",
         "resources": [
-
+          { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" },
+          { "text": "Learn more about Verenigma", "url": "https://www.verenigma.com/" },
+          { "text": "Take the Alexithymia test", "url": "https://www.verenigma.com/take-the-verenigma-test" },
+          { "text": "Read more about emotional regulation", "url": "https://www.verenigma.com/blog-posts/unlocking-emotional-balance-navigating-the-path-of-emotional-regulation-and-overcoming-alexithymia", "target": "_blank" }
         ]
       }
     }
