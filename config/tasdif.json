@@ -91,7 +91,7 @@
             "maxScore": 17,
             "message": "Your score suggests that you do not suffer from Alexithymia or difficulty identify feelings.",
             "resources": [
-              { "text": "Take our emotional regulation questionnaire", "url": "https://example.com/low-risk", "target": "_self" }
+              { "text": "Take our emotional regulation questionnaire", "url": "https://www.verenigma.com/mental-health-tests?survey=erq", "target": "_self" }
             ]
           },
           {

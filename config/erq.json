@@ -102,7 +102,7 @@
         "resources": [
           { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" },
           { "text": "Learn more about Verenigma", "url": "https://www.verenigma.com/" },
-          { "text": "Take the Alexithymia test", "url": "https://www.verenigma.com/take-the-verenigma-test" },
+          { "text": "Take the Alexithymia test", "url": "https://www.verenigma.com/mental-health-tests?survey=tasdif" },
           { "text": "Read more about emotional regulation", "url": "https://www.verenigma.com/blog-posts/unlocking-emotional-balance-navigating-the-path-of-emotional-regulation-and-overcoming-alexithymia", "target": "_blank" }
         ]
       }
