@@ -5,7 +5,7 @@ let userAnswers = []; // Stores numeric values chosen for each question
 let userSelectedIndices = []; // Stores the chosen slider index per question
 
 // Set this to true to enable debug logs
-const debug = false;
+const debug = true;
 
 function getSurveyFile() {
     if (typeof window.survey !== 'undefined' && window.survey) {
@@ -68,7 +68,8 @@ async function initSurvey() {
         const backBtn = document.createElement('button');
         backBtn.id = 'backBtn';
         backBtn.textContent = 'Back';
-        backBtn.style.display = 'none'; // Hidden for the first question
+        //backBtn.style.display = 'none';
+        backBtn.className = 'hidden-button';
         backBtn.addEventListener('click', () => handleBack(config));
         navContainer.appendChild(backBtn);
 
@@ -136,7 +137,8 @@ function showQuestion(config, index) {
     // Back button logic if any
     const backBtn = document.getElementById('backBtn');
     if (backBtn) {
-        backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+        //backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+        backBtn.classList = index === 0 ? 'hidden-button' : 'revealed-button';
     }
 
     if (debug) console.log("[showQuestion] Question rendered. The observer in slider-label.js should handle initialization.");
@@ -193,111 +195,192 @@ function handleBack(config) {
 }
 
 function showResults(config) {
-    // Hide the question container
+    // Hide question container and buttons
     const questionContainer = document.getElementById('question-container');
-    if (questionContainer) {
-      questionContainer.style.display = 'none';
-    }
-  
-    // Hide the Next and Back buttons
+    if (questionContainer) questionContainer.style.display = 'none';
+
     const nextBtn = document.getElementById('nextBtn');
-    if (nextBtn) {
-      nextBtn.style.display = 'none';
-    }
+    if (nextBtn) nextBtn.style.display = 'none';
+
     const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-      backBtn.style.display = 'none';
-    }
-  
+    if (backBtn) backBtn.style.display = 'none';
+
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '';
     resultDiv.style.display = 'block';
-  
-    const scoresByPart = {};
-    config.questions.forEach((q, idx) => {
-      if (!scoresByPart[q.part]) {
-        scoresByPart[q.part] = 0;
+
+    for (const part in config.partsInfo) {
+        config.partsInfo[part].questionCount = 0;
       }
-      const val = parseInt(userAnswers[idx], 10);
-      scoresByPart[q.part] += isNaN(val) ? 0 : val;
-    });
-  
+      
+      const scoresByPart = {};
+      config.questions.forEach((q, idx) => {
+        if (!scoresByPart[q.part]) {
+          scoresByPart[q.part] = 0;
+        }
+      
+        // Increment question count for this part
+        if (config.partsInfo[q.part]) {
+          config.partsInfo[q.part].questionCount++;
+        }
+      
+        const val = parseInt(userAnswers[idx], 10);
+        scoresByPart[q.part] += isNaN(val) ? 0 : val;
+      });
+
     if (debug) {
       console.log("Scores by part:", scoresByPart);
       console.log("partsInfo from config:", config.partsInfo);
     }
-  
+
     for (const part in scoresByPart) {
-      const partScore = scoresByPart[part];
-      const partData = config.partsInfo[part];
-  
-      if (!partData) {
-        if (debug) console.error(`No partsInfo found for part '${part}'`);
-        continue;
-      }
-  
-      // Display score as partScore/maxScore if maxScore exists, otherwise just partScore
-      const scoreDisplay = partData.maxScore !== undefined 
+        let partScore = scoresByPart[part];
+        const partData = config.partsInfo[part];
+        const scoreMethod = partData.scoreMethod; // 'addition', 'average', or unset
+
+        if (!partData) {
+            if (debug) console.error(`No partsInfo found for part '${part}'`);
+            continue;
+        }
+
+        if (debug) {
+            if (scoreMethod === 'addition'){
+                console.log("Score method is 'addition', summing scores:", partScore);
+            }
+            else {
+                console.log({scoreMethod});
+            }
+        }
+
+        // Adjust partScore based on scoreMethod
+        if (scoreMethod === 'average' && partData.questionCount && partData.questionCount > 0) {
+            if (debug) { console.log("Score method is 'average', dividing by questionCount:", partData.questionCount); }
+            partScore = Math.round( ( partScore / partData.questionCount ) * 10 ) / 10;
+        } 
+
+        if (partData.questionCount === 0) {
+            console.warn(`No questions found for part '${part}'`);
+        }
+
+        // If scoreMethod is 'addition' or unset, we do nothing since it's already a sum.
+
+        const scoreDisplay = partData.maxScore !== undefined 
         ? `${partScore}/${partData.maxScore}` 
         : partScore;
-  
-      const partTitle = document.createElement('h2');
-      partTitle.textContent = `${partData.title}: ${scoreDisplay}`;
-      resultDiv.appendChild(partTitle);
-  
-      const interpretation = partData.interpretation;
-      if (interpretation.threshold !== undefined) {
-        const meetsThreshold = partScore >= interpretation.threshold;
-        const message = document.createElement('p');
-        message.textContent = meetsThreshold ? 
-          interpretation.positiveMessage : 
-          interpretation.negativeMessage;
-        resultDiv.appendChild(message);
-  
-        // Show appropriate resources based on threshold result
-        const resources = meetsThreshold ? interpretation.positiveResources : interpretation.negativeResources;
-        if (resources && resources.length > 0) {
-          const resourceTitle = document.createElement('h3');
-          resourceTitle.textContent = "What's next?";
-          resultDiv.appendChild(resourceTitle);
-  
-          const resList = document.createElement('ul');
-          resources.forEach(resource => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = resource.url;
-            link.textContent = resource.text;
-            link.target = '_blank';
-            li.appendChild(link);
-            resList.appendChild(li);
-          });
-          resultDiv.appendChild(resList);
+
+        const partTitle = document.createElement('h2');
+        partTitle.textContent = `${partData.title}: ${scoreDisplay}`;
+        resultDiv.appendChild(partTitle);
+
+        const interpretation = partData.interpretation;
+        if (!interpretation) {
+            // No interpretation, just continue
+            continue;
         }
-      } else {
-        // No threshold, just show a note and resources if any
-        if (interpretation.note) {
-          const note = document.createElement('p');
-          note.textContent = interpretation.note;
-          resultDiv.appendChild(note);
+
+        // Check for gradeBoundaries first
+        if (Array.isArray(interpretation.gradeBoundaries)) {
+            // Find the boundary that matches partScore
+            const boundary = interpretation.gradeBoundaries.find(b => 
+            partScore >= b.minScore && partScore <= b.maxScore
+            );
+
+            if (boundary) {
+            const message = document.createElement('p');
+            message.textContent = boundary.message;
+            resultDiv.appendChild(message);
+
+            if (boundary.resources && boundary.resources.length > 0) {
+                const resourceTitle = document.createElement('h3');
+                resourceTitle.textContent = "What's next?";
+                resultDiv.appendChild(resourceTitle);
+
+                const resList = document.createElement('ul');
+                boundary.resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }
+                li.appendChild(link);
+                resList.appendChild(li);
+                });
+                resultDiv.appendChild(resList);
+            }
+            } else {
+            // No boundary found for this score - fallback to note if any
+            if (interpretation.note) {
+                const note = document.createElement('p');
+                note.textContent = interpretation.note;
+                resultDiv.appendChild(note);
+            }
+            }
+        } else if (interpretation.threshold !== undefined) {
+            // Threshold logic (existing)
+            const meetsThreshold = partScore >= interpretation.threshold;
+            const message = document.createElement('p');
+            message.textContent = meetsThreshold ? 
+            interpretation.positiveMessage : 
+            interpretation.negativeMessage;
+            resultDiv.appendChild(message);
+
+            const resources = meetsThreshold ? interpretation.positiveResources : interpretation.negativeResources;
+            if (resources && resources.length > 0) {
+            const resourceTitle = document.createElement('h3');
+            resourceTitle.textContent = "What's next?";
+            resultDiv.appendChild(resourceTitle);
+
+            const resList = document.createElement('ul');
+            resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }
+                li.appendChild(link);
+                resList.appendChild(li);
+            });
+            resultDiv.appendChild(resList);
+            }
+        } else {
+            // No threshold, no gradeBoundaries, just show note/resources
+            if (interpretation.note) {
+            const note = document.createElement('p');
+            note.textContent = interpretation.note;
+            resultDiv.appendChild(note);
+            }
+
+            if (interpretation.resources && interpretation.resources.length > 0) {
+            const resourceTitle = document.createElement('h3');
+            resourceTitle.textContent = "What's next?";
+            resultDiv.appendChild(resourceTitle);
+
+            const resList = document.createElement('ul');
+            interpretation.resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }            li.appendChild(link);
+                resList.appendChild(li);
+            });
+            resultDiv.appendChild(resList);
+            }
         }
-  
-        if (interpretation.resources && interpretation.resources.length > 0) {
-          const resourceTitle = document.createElement('h3');
-          resourceTitle.textContent = "What's next?";
-          resultDiv.appendChild(resourceTitle);
-  
-          const resList = document.createElement('ul');
-          interpretation.resources.forEach(resource => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = resource.url;
-            link.textContent = resource.text;
-            link.target = '_blank';
-            li.appendChild(link);
-            resList.appendChild(li);
-          });
-          resultDiv.appendChild(resList);
-        }
-      }
     }
 }
