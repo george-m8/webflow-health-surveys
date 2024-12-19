@@ -1,0 +1,108 @@
+{
+    "title": "Self-Report Scale for Emotional Regulation (ERQ)",
+    "description": "This test is a brief questionnaire for your personal emotional regulation style and methods. It is not a substitute for a professional diagnosis.",
+    "questions": [
+      {
+        "part": "A",
+        "text": "I keep my emotions to myself.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "I control my emotions by not expressing them.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "When I want to feel more positive emotion, I change the way I'm thinking about the situation about the situation.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "I control my emotions by changing the way I think about the situation I'm in.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      },
+      {
+        "part": "A",
+        "text": "When I am feeling negative emotions, I make sure not to express them.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      },
+      {
+        "part": "B",
+        "text": "When I want to feel less negative emotion, I change the way I'm thinking about the situation about the situation.",
+        "options": [
+          { "label": "Strongly Disagree", "value": 1 },
+          { "label": "Disagree", "value": 2 },
+          { "label": "Somewhat Disagree", "value": 3 },
+          { "label": "Neutral", "value": 4 },
+          { "label": "Somewhat Agree", "value": 5 },
+          { "label": "Agree", "value": 6 },
+          { "label": "Strongly Agree", "value": 7 }
+        ]
+      }
+    ],
+  "partsInfo": {
+    "A": {
+      "title": "Cognitive Reappraisal Score",
+      "maxScore": 7,
+      "scoreMethod": "average",
+      "interpretation": {
+        "note": "",
+        "resources": [
+
+        ]
+      }
+    },
+    "B": {
+      "title": "Emotional Suppression Score",
+      "maxScore": 7,
+      "scoreMethod": "average",
+      "interpretation": {
+        "note": "",
+        "resources": [
+
+        ]
+      }
+    }
+  }
+}

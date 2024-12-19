@@ -207,14 +207,24 @@ function showResults(config) {
     resultDiv.innerHTML = '';
     resultDiv.style.display = 'block';
 
-    const scoresByPart = {};
-    config.questions.forEach((q, idx) => {
-      if (!scoresByPart[q.part]) {
-        scoresByPart[q.part] = 0;
+    for (const part in config.partsInfo) {
+        config.partsInfo[part].questionCount = 0;
       }
-      const val = parseInt(userAnswers[idx], 10);
-      scoresByPart[q.part] += isNaN(val) ? 0 : val;
-    });
+      
+      const scoresByPart = {};
+      config.questions.forEach((q, idx) => {
+        if (!scoresByPart[q.part]) {
+          scoresByPart[q.part] = 0;
+        }
+      
+        // Increment question count for this part
+        if (config.partsInfo[q.part]) {
+          config.partsInfo[q.part].questionCount++;
+        }
+      
+        const val = parseInt(userAnswers[idx], 10);
+        scoresByPart[q.part] += isNaN(val) ? 0 : val;
+      });
 
     if (debug) {
       console.log("Scores by part:", scoresByPart);
@@ -222,117 +232,153 @@ function showResults(config) {
     }
 
     for (const part in scoresByPart) {
-      const partScore = scoresByPart[part];
-      const partData = config.partsInfo[part];
+        let partScore = scoresByPart[part];
+        const partData = config.partsInfo[part];
+        const scoreMethod = partData.scoreMethod; // 'addition', 'average', or unset
 
-      if (!partData) {
-        if (debug) console.error(`No partsInfo found for part '${part}'`);
-        continue;
-      }
+        if (!partData) {
+            if (debug) console.error(`No partsInfo found for part '${part}'`);
+            continue;
+        }
 
-      const scoreDisplay = partData.maxScore !== undefined 
+        if (debug) {
+            if (scoreMethod === 'addition'){
+                console.log("Score method is 'addition', summing scores:", partScore);
+            }
+            else {
+                console.log({scoreMethod});
+            }
+        }
+
+        // Adjust partScore based on scoreMethod
+        if (scoreMethod === 'average' && partData.questionCount && partData.questionCount > 0) {
+            if (debug) { console.log("Score method is 'average', dividing by questionCount:", partData.questionCount); }
+            partScore = Math.round( ( partScore / partData.questionCount ) * 10 ) / 10;
+        } 
+
+        if (partData.questionCount === 0) {
+            console.warn(`No questions found for part '${part}'`);
+        }
+
+        // If scoreMethod is 'addition' or unset, we do nothing since it's already a sum.
+
+        const scoreDisplay = partData.maxScore !== undefined 
         ? `${partScore}/${partData.maxScore}` 
         : partScore;
 
-      const partTitle = document.createElement('h2');
-      partTitle.textContent = `${partData.title}: ${scoreDisplay}`;
-      resultDiv.appendChild(partTitle);
+        const partTitle = document.createElement('h2');
+        partTitle.textContent = `${partData.title}: ${scoreDisplay}`;
+        resultDiv.appendChild(partTitle);
 
-      const interpretation = partData.interpretation;
-      if (!interpretation) {
-        // No interpretation, just continue
-        continue;
-      }
+        const interpretation = partData.interpretation;
+        if (!interpretation) {
+            // No interpretation, just continue
+            continue;
+        }
 
-      // Check for gradeBoundaries first
-      if (Array.isArray(interpretation.gradeBoundaries)) {
-        // Find the boundary that matches partScore
-        const boundary = interpretation.gradeBoundaries.find(b => 
-          partScore >= b.minScore && partScore <= b.maxScore
-        );
+        // Check for gradeBoundaries first
+        if (Array.isArray(interpretation.gradeBoundaries)) {
+            // Find the boundary that matches partScore
+            const boundary = interpretation.gradeBoundaries.find(b => 
+            partScore >= b.minScore && partScore <= b.maxScore
+            );
 
-        if (boundary) {
-          const message = document.createElement('p');
-          message.textContent = boundary.message;
-          resultDiv.appendChild(message);
+            if (boundary) {
+            const message = document.createElement('p');
+            message.textContent = boundary.message;
+            resultDiv.appendChild(message);
 
-          if (boundary.resources && boundary.resources.length > 0) {
+            if (boundary.resources && boundary.resources.length > 0) {
+                const resourceTitle = document.createElement('h3');
+                resourceTitle.textContent = "What's next?";
+                resultDiv.appendChild(resourceTitle);
+
+                const resList = document.createElement('ul');
+                boundary.resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }
+                li.appendChild(link);
+                resList.appendChild(li);
+                });
+                resultDiv.appendChild(resList);
+            }
+            } else {
+            // No boundary found for this score - fallback to note if any
+            if (interpretation.note) {
+                const note = document.createElement('p');
+                note.textContent = interpretation.note;
+                resultDiv.appendChild(note);
+            }
+            }
+        } else if (interpretation.threshold !== undefined) {
+            // Threshold logic (existing)
+            const meetsThreshold = partScore >= interpretation.threshold;
+            const message = document.createElement('p');
+            message.textContent = meetsThreshold ? 
+            interpretation.positiveMessage : 
+            interpretation.negativeMessage;
+            resultDiv.appendChild(message);
+
+            const resources = meetsThreshold ? interpretation.positiveResources : interpretation.negativeResources;
+            if (resources && resources.length > 0) {
             const resourceTitle = document.createElement('h3');
             resourceTitle.textContent = "What's next?";
             resultDiv.appendChild(resourceTitle);
 
             const resList = document.createElement('ul');
-            boundary.resources.forEach(resource => {
-              const li = document.createElement('li');
-              const link = document.createElement('a');
-              link.href = resource.url;
-              link.textContent = resource.text;
-              link.target = '_blank';
-              li.appendChild(link);
-              resList.appendChild(li);
+            resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }
+                li.appendChild(link);
+                resList.appendChild(li);
             });
             resultDiv.appendChild(resList);
-          }
+            }
         } else {
-          // No boundary found for this score - fallback to note if any
-          if (interpretation.note) {
+            // No threshold, no gradeBoundaries, just show note/resources
+            if (interpretation.note) {
             const note = document.createElement('p');
             note.textContent = interpretation.note;
             resultDiv.appendChild(note);
-          }
-        }
-      } else if (interpretation.threshold !== undefined) {
-        // Threshold logic (existing)
-        const meetsThreshold = partScore >= interpretation.threshold;
-        const message = document.createElement('p');
-        message.textContent = meetsThreshold ? 
-          interpretation.positiveMessage : 
-          interpretation.negativeMessage;
-        resultDiv.appendChild(message);
+            }
 
-        const resources = meetsThreshold ? interpretation.positiveResources : interpretation.negativeResources;
-        if (resources && resources.length > 0) {
-          const resourceTitle = document.createElement('h3');
-          resourceTitle.textContent = "What's next?";
-          resultDiv.appendChild(resourceTitle);
+            if (interpretation.resources && interpretation.resources.length > 0) {
+            const resourceTitle = document.createElement('h3');
+            resourceTitle.textContent = "What's next?";
+            resultDiv.appendChild(resourceTitle);
 
-          const resList = document.createElement('ul');
-          resources.forEach(resource => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = resource.url;
-            link.textContent = resource.text;
-            link.target = '_blank';
-            li.appendChild(link);
-            resList.appendChild(li);
-          });
-          resultDiv.appendChild(resList);
+            const resList = document.createElement('ul');
+            interpretation.resources.forEach(resource => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.textContent = resource.text;
+                if (!resource.target) {
+                    resource.target = '_self';
+                }
+                else {
+                    link.target = resource.target;
+                }            li.appendChild(link);
+                resList.appendChild(li);
+            });
+            resultDiv.appendChild(resList);
+            }
         }
-      } else {
-        // No threshold, no gradeBoundaries, just show note/resources
-        if (interpretation.note) {
-          const note = document.createElement('p');
-          note.textContent = interpretation.note;
-          resultDiv.appendChild(note);
-        }
-
-        if (interpretation.resources && interpretation.resources.length > 0) {
-          const resourceTitle = document.createElement('h3');
-          resourceTitle.textContent = "What's next?";
-          resultDiv.appendChild(resourceTitle);
-
-          const resList = document.createElement('ul');
-          interpretation.resources.forEach(resource => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = resource.url;
-            link.textContent = resource.text;
-            link.target = '_blank';
-            li.appendChild(link);
-            resList.appendChild(li);
-          });
-          resultDiv.appendChild(resList);
-        }
-      }
     }
 }

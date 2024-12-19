@@ -1,5 +1,5 @@
 {
-    "title": "Self-Report Scale for Alexithymua (TAS [Difficulty Identifying Feelings])",
+    "title": "Self-Report Scale for Alexithymia (TAS [Difficulty Identifying Feelings])",
     "description": "This test is a screening measure for Alexithymia using only the 'Difficulty Identifying Feelings' sub-scale. It is not a substitute for a professional diagnosis.",
     "questions": [
       {
@@ -8,7 +8,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -19,7 +19,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -30,7 +30,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -41,7 +41,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -52,7 +52,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -63,7 +63,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -74,7 +74,7 @@
         "options": [
           { "label": "Strongly Disagree", "value": 1 },
           { "label": "Disagree", "value": 2 },
-          { "label": "Neither Agree nor Disagree", "value": 3 },
+          { "label": "Neutral", "value": 3 },
           { "label": "Agree", "value": 4 },
           { "label": "Strongly Agree", "value": 5 }
         ]
@@ -88,30 +88,32 @@
         "gradeBoundaries": [
           {
             "minScore": 0,
-            "maxScore": 5,
-            "message": "Your score suggests low risk.",
+            "maxScore": 17,
+            "message": "Your score suggests that you do not suffer from Alexithymia or difficulty identify feelings.",
             "resources": [
-              { "text": "General well-being info", "url": "https://example.com/low-risk" }
+              { "text": "Take our emotional regulation questionnaire", "url": "https://example.com/low-risk", "target": "_self" }
             ]
           },
           {
-            "minScore": 6,
-            "maxScore": 20,
-            "message": "Your score suggests moderate symptoms.",
+            "minScore": 18,
+            "maxScore": 21,
+            "message": "Your score suggests a possibility that you might suffer from Alexithymia and difficulty identify feelings. Verenigma helps users to analyse, understand and identify feelings/emotions, improving emotional regulation and Alexithymia symptoms.",
             "resources": [
-              { "text": "Learn about moderate support options", "url": "https://example.com/moderate-support" }
-            ]
+              { "text": "Find out more about Verenigma", "url": "https://www.verenigma.com/" },
+              { "text": "Read more about Alexithymia", "url": "https://www.verenigma.com/blog-posts/behavioural-characteristics-of-alexithymia" },
+              { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }            ]
           },
           {
-            "minScore": 21,
+            "minScore": 22,
             "maxScore": 35,
-            "message": "Your score suggests high severity.",
+            "message": "Your score suggests that you suffer from Alexithymia and difficulty identify feelings. Verenigma helps users to analyse, understand and identify feelings/emotions, improving emotional regulation and Alexithymia symptoms.",
             "resources": [
-              { "text": "Explore specialized help", "url": "https://example.com/high-severity" }
+              { "text": "Find out more about Verenigma", "url": "https://www.verenigma.com/" },
+              { "text": "Read more about Alexithymia", "url": "https://www.verenigma.com/blog-posts/behavioural-characteristics-of-alexithymia" },
+              { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
             ]
           }
-        ],
-        "note": "These results are only a guide and not a diagnosis."
+        ]
       }
     }
   }
