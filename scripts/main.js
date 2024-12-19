@@ -68,7 +68,8 @@ async function initSurvey() {
         const backBtn = document.createElement('button');
         backBtn.id = 'backBtn';
         backBtn.textContent = 'Back';
-        backBtn.style.display = 'none'; // Hidden for the first question
+        //backBtn.style.display = 'none';
+        backBtn.className = 'hidden-button';
         backBtn.addEventListener('click', () => handleBack(config));
         navContainer.appendChild(backBtn);
 
@@ -136,7 +137,8 @@ function showQuestion(config, index) {
     // Back button logic if any
     const backBtn = document.getElementById('backBtn');
     if (backBtn) {
-        backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+        //backBtn.style.display = index === 0 ? 'none' : 'inline-block';
+        backBtn.classList = index === 0 ? 'hidden-button' : 'revealed-button';
     }
 
     if (debug) console.log("[showQuestion] Question rendered. The observer in slider-label.js should handle initialization.");

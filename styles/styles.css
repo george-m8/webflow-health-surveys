@@ -89,7 +89,7 @@ body #health-surveys-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    /* gap: 12px; */
     padding: 10px 0; /* Ensure spacing from the bottom */
     background-color: var(--secondary-color); /* Matches container */
     position: relative;
@@ -225,7 +225,7 @@ body #health-surveys-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    /* gap: 12px; */
     padding: 10px 0; /* Ensure spacing from the bottom */
     background-color: var(--secondary-color); /* Matches container */
     position: relative;

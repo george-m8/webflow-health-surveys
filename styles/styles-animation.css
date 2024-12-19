@@ -1,0 +1,19 @@
+#health-surveys-container #survey-container button.hidden-button {
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    margin-right: 0;
+    pointer-events: none;
+}
+
+#health-surveys-container #survey-container button.revealed-button {
+    margin-right: 12px;
+    opacity: 1;
+}
+
+#health-surveys-container #survey-container button.revealed-button, #health-surveys-container #survey-container button.hidden-button {
+    transition: padding 0.3s ease, 
+                opacity 0.3s ease, 
+                margin-right 0.3s ease; /* Smooth animation */
+}
