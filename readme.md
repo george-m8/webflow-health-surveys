@@ -15,5 +15,11 @@ Notes:
         - [x] work on simplifying code
         - [x] labels should always pull from json, no point in default vals - they will be wrong.
 - [x] Add AQ-10 surey
-- [ ] Redo ERQ survey using this project
-- [ ] Redo TAS-DIF
+- [x] Redo ERQ survey using this project
+- [x] Redo TAS-DIF
+- [ ] Add animations to the project
+    - [x] Animate "back" button reveal
+    - [ ] Animate "back" button hide
+    - [ ] Animate question fade in
+    - [ ] Animate question fade out
+    - [ ] Animate results reveal
