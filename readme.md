@@ -54,4 +54,6 @@ The site can be self-hosted. But is available at [https://health-surveys.netlify
     - [ ] Animate question fade in
     - [ ] Animate question fade out
     - [ ] Animate results reveal
-    - [ ] Animate slider label movement to smooth out
+    - [x] Animate slider label movement to smooth out
+- [ ] Would be nice to have the resource URLs shown in results all be grouped together in one list at bottom
+    - [ ] I would need to consider what would be done with duplicate URLs although not sure we have any cases currently that would cause issue.
