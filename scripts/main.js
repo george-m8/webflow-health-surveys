@@ -5,7 +5,7 @@ let userAnswers = []; // Stores numeric values chosen for each question
 let userSelectedIndices = []; // Stores the chosen slider index per question
 
 // Set this to true to enable debug logs
-const debug = true;
+const debug = false;
 
 function getSurveyFile() {
     if (typeof window.survey !== 'undefined' && window.survey) {
