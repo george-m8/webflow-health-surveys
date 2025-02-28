@@ -208,7 +208,7 @@
           "interpretation": {
             "threshold": 4,
             "positiveMessage": "This score provides a screening score for ADHD. A score of four or higher suggests that you have symptoms consistent with ADHD in adults.",
-            "negativeMessage": "symptoms highly consistent with ADHD in adults. A score of less than four suggests that you may not have ADHD.",
+            "negativeMessage": "This score provides a screening score for ADHD. A score of less than four suggests that you may not have ADHD.",
             "positiveResources": [
               { "text": "Learn more about Verenigma for ADHD", "url": "https://www.verenigma.com/adhd" },
               { "text": "Download Verenigma", "url": "https://www.verenigma.com/download" }
